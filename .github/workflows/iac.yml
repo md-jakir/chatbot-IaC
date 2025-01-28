@@ -1,10 +1,10 @@
 name: Terraform Infrastructure Management
 
 on:
-  workflow_dispatch:
-#   push:
-#     branches:
-#       - master  # Trigger on push to main branch
+  #workflow_dispatch:
+  push:
+    branches:
+      - master  # Trigger on push to main branch
 #     paths:
 #       - 'IaC/**'  # Trigger when files in IaC folder change
 #   pull_request:
