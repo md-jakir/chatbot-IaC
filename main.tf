@@ -1,6 +1,6 @@
 provider "aws" {
   region = "ap-southeast-1"
-  profile = "AI-chatbot-905418236735"
+  #profile = "AI-chatbot-905418236735"
 }
 
 # TF State Backend in S3
@@ -11,7 +11,7 @@ terraform {
     key            = "terraform/state.tfstate" # Path within the bucket
     region         = "ap-southeast-1"
     encrypt        = true
-    profile = "AI-chatbot-905418236735"
+    #profile = "AI-chatbot-905418236735"
     #dynamodb_table = "${var.project_name}-tf-locks"
   }
 }
