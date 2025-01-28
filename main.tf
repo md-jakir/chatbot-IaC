@@ -88,6 +88,7 @@ module "backend_taskdef" {
 # Parameter Stotre module
 module "parameter_store" {
   source = "./modules/parameter_store"
+  ssm_parameters = locals.ssm_parameters
 }
 
 # CodeBuild Module for Frontend
