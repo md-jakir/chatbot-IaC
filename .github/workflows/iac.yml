@@ -4,7 +4,7 @@ on:
   #workflow_dispatch:
   push:
     branches:
-      - master  # Trigger on push to main branch
+      - master   # Trigger on push to main branch
 #     paths:
 #       - 'IaC/**'  # Trigger when files in IaC folder change
 #   pull_request:
@@ -17,7 +17,7 @@ env:
   ACTIONS_RUNNER_DEBUG: true
   AWS_REGION: ap-southeast-1
   AWS_ACCOUNT_ID: 905418236735
-  AWS_ECR_REPO: 905418236735.dkr.ecr.eu-north-1.amazonaws.com/ai-competency/chatbot-admin-dashboard
+  #AWS_ECR_REPO: 905418236735.dkr.ecr.eu-north-1.amazonaws.com/ai-competency/chatbot-admin-dashboard
 
 permissions:
   id-token: write
@@ -50,7 +50,7 @@ jobs:
         NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
         DB_URL: ${{ secrets.DB_URL }}
         JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      run: echo "Secrets exported
+      run: echo "Secrets exported"
 
     - name: Terraform Init
       run: |
