@@ -91,5 +91,23 @@ variable "backend" {
 }
 
 
+variable "NEXTAUTH_SECRET" {
+  description = "NextAuth secret value"
+  type        = string
+  sensitive   = true
+}
+
+variable "DB_URL" {
+  description = "Database URL"
+  type        = string
+  sensitive   = true
+}
+
+variable "JWT_SECRET" {
+  description = "jwt secret"
+  type        = string
+  sensitive   = true
+}
+
 
 

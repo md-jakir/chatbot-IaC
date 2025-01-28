@@ -88,6 +88,9 @@ module "backend_taskdef" {
 # Parameter Stotre module
 module "parameter_store" {
   source = "./modules/parameter_store"
+  NEXTAUTH_SECRET = var.NEXTAUTH_SECRET
+  DB_URL = var.DB_URL
+  JWT_SECRET = var.JWT_SECRET
   #ssm_parameters = locals.ssm_parameters
 }
 

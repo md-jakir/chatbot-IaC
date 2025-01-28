@@ -70,19 +70,19 @@
 variable "NEXTAUTH_SECRET" {
   description = "NextAuth secret value"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
 variable "DB_URL" {
   description = "Database URL"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
 variable "JWT_SECRET" {
   description = "JWT secret"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
 variable "JWT_SECRET_FOR_VERIFY" {

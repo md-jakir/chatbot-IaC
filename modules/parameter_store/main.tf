@@ -11,14 +11,14 @@
 # }
 
 resource "aws_ssm_parameter" "nextauth_secret" {
-  name        = "nextauth_secret"
+  name        = "NextauthSecret"
   type        = "SecureString"
   value       = var.NEXTAUTH_SECRET
   description = "NextAuth Secret"
 }
 
 resource "aws_ssm_parameter" "db_url" {
-  name        = "db_url"
+  name        = "DBUrl"
   type        = "SecureString"
   value       = var.DB_URL
   description = "Database URL"
