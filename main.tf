@@ -97,7 +97,6 @@ module "parameter_store" {
   sender_password = var.sender_password
   jwt_secret_for_verify = var.jwt_secret_for_verify
   access_key = var.access_key
-  #ssm_parameters = locals.ssm_parameters
 }
 
 # CodeBuild Module for Frontend
