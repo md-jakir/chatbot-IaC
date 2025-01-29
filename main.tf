@@ -83,7 +83,7 @@ module "backend_taskdef" {
   session_token_arn = module.parameter_store.session_token_arn
   access_key_arn = module.parameter_store.access_key_arn
   task_role_arn = module.iam.task_role_arn
-  depends_on = [ module.parameter_store ]
+  #depends_on = [ module.parameter_store ]
 }
 
 # Parameter Stotre module
