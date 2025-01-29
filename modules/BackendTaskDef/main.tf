@@ -18,5 +18,4 @@ resource "aws_ecs_task_definition" "backend_task" {
     frontend_service_discovery_name = var.frontend_discovery_name
     cluster_namespace_name          = var.ecs_cluster_namespace
   })
-  depends_on = [module.parameter_store]
 }
