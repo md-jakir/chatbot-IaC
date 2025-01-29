@@ -1,10 +1,21 @@
 name: Terraform Infrastructure Management
 
 on:
-  #workflow_dispatch:
-  push:
-    branches:
-      - master   # Trigger on push to main branch
+  workflow_dispatch:
+    inputs: 
+      action: 
+        description: "Terraform Action (init, plan, apply, destroy)"
+        required: true
+        default: "plan"
+        type: choice
+        options:
+          - init
+          - plan
+          - apply
+          - destroy
+  # push:
+  #   branches:
+  #     - master   # Trigger on push to main branch
 #     paths:
 #       - 'IaC/**'  # Trigger when files in IaC folder change
 #   pull_request:
@@ -55,18 +66,30 @@ jobs:
         role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github-oidc-role
         aws-region: ${{ env.AWS_REGION }}      
 
-    # - name: Export Secrets
-
-    #   run: echo "Secrets exported"
-
-    - name: Terraform Init
-      run: |
-        terraform init
+    - name: Initialize Terraform
+      if: inputs.action == 'init'
+      run: terraform init
 
     - name: Terraform Plan
-      run: |
-        terraform plan
+      if: inputs.action == 'plan'
+      run: terraform plan
 
     - name: Terraform Apply
-      run: |
-        terraform apply -auto-approve
+      if: inputs.action == 'apply'
+      run: terraform apply -auto-approve
+
+    - name: Terraform Destroy
+      if: inputs.action == 'destroy'
+      run: terraform destroy -auto-approve
+
+    # - name: Terraform Init
+    #   run: |
+    #     terraform init
+
+    # - name: Terraform Plan
+    #   run: |
+    #     terraform plan
+
+    # - name: Terraform Apply
+    #   run: |
+    #     terraform apply -auto-approve
