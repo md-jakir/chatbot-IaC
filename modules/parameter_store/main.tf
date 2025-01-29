@@ -13,62 +13,62 @@
 resource "aws_ssm_parameter" "nextauth_secret" {
   name        = "NextauthSecret"
   type        = "SecureString"
-  value       = var.NEXTAUTH_SECRET
+  value       = var.nextauth_secret
   description = "NextAuth Secret"
 }
 
 resource "aws_ssm_parameter" "db_url" {
   name        = "DBUrl"
   type        = "SecureString"
-  value       = var.DB_URL
+  value       = var.db_url
   description = "Database URL"
 }
 
 resource "aws_ssm_parameter" "jwt_secret" {
   name        = "jwt_secret"
   type        = "SecureString"
-  value       = var.JWT_SECRET
+  value       = var.jwt_secret
   description = "JWT Secret"
 }
 
 resource "aws_ssm_parameter" "jwt_secret_for_verify" {
   name        = "jwt_secret_for_verify"
   type        = "SecureString"
-  value       = var.JWT_SECRET_FOR_VERIFY
+  value       = var.jwt_secret_for_verify
   description = "JWT Secret"
 }
 
 resource "aws_ssm_parameter" "openai_api_key" {
   name        = "openai_api_key"
   type        = "SecureString"
-  value       = var.OPENAI_API_KEY
+  value       = var.openai_api_key
   description = "JWT Secret"
 }
 
 resource "aws_ssm_parameter" "sender_password" {
   name        = "sender_password"
   type        = "SecureString"
-  value       = var.SENDER_PASSWORD
+  value       = var.sender_password
   description = "JWT Secret"
 }
 
 resource "aws_ssm_parameter" "access_key" {
   name        = "access_key"
   type        = "SecureString"
-  value       = var.ACCESS_KEY
+  value       = var.access_key
   description = "JWT Secret"
 }
 
 resource "aws_ssm_parameter" "secret_key" {
   name        = "secret_key"
   type        = "SecureString"
-  value       = var.SECRET_KEY
+  value       = var.secret_key
   description = "JWT Secret"
 }
 
 resource "aws_ssm_parameter" "session_token" {
   name        = "session_token"
   type        = "SecureString"
-  value       = var.SESSION_TOKEN
+  value       = var.session_token
   description = "JWT Secret"
 }

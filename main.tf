@@ -88,15 +88,15 @@ module "backend_taskdef" {
 # Parameter Stotre module
 module "parameter_store" {
   source = "./modules/parameter_store"
-  NEXTAUTH_SECRET = var.NEXTAUTH_SECRET
-  DB_URL = var.DB_URL
-  JWT_SECRET = var.JWT_SECRET
-  SECRET_KEY = var.SECRET_KEY
-  OPENAI_API_KEY = var.OPENAI_API_KEY
-  SESSION_TOKEN = var.SESSION_TOKEN
-  SENDER_PASSWORD = var.SENDER_PASSWORD
-  JWT_SECRET_FOR_VERIFY = var.JWT_SECRET_FOR_VERIFY
-  ACCESS_KEY = var.ACCESS_KEY
+  nextauth_secret = var.nextauth_secret
+  db_url = var.db_url
+  jwt_secret = var.jwt_secret
+  secret_key = var.secret_key
+  openai_api_key = var.openai_api_key
+  session_token = var.session_token
+  sender_password = var.sender_password
+  jwt_secret_for_verify = var.jwt_secret_for_verify
+  access_key = var.access_key
   #ssm_parameters = locals.ssm_parameters
 }
 

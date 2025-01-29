@@ -67,57 +67,57 @@
 #   }
 # }
 
-variable "NEXTAUTH_SECRET" {
+variable "nextauth_secret" {
   description = "NextAuth secret value"
   type        = string
   #default     = ""
 }
 
-variable "DB_URL" {
+variable "db_url" {
   description = "Database URL"
   type        = string
   #default     = ""
 }
 
-variable "JWT_SECRET" {
+variable "jwt_secret" {
   description = "JWT secret"
   type        = string
   #default     = ""
   sensitive = true
 }
 
-variable "JWT_SECRET_FOR_VERIFY" {
+variable "jwt_secret_for_verify" {
   description = "JWT secret for verify"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
-variable "OPENAI_API_KEY" {
+variable "openai_api_key" {
   description = "OpenAI API key"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
-variable "SENDER_PASSWORD" {
+variable "sender_password" {
   description = "Sender Password"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
-variable "ACCESS_KEY" {
+variable "access_key" {
   description = "Access key"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
-variable "SECRET_KEY" {
+variable "secret_key" {
   description = "Secret key"
   type        = string
-  default     = ""
+  #default     = ""
 }
 
-variable "SESSION_TOKEN" {
+variable "session_token" {
   description = "Session token"
   type        = string
-  default     = ""
+  #default     = ""
 }
