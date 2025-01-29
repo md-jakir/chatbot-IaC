@@ -109,5 +109,47 @@ variable "JWT_SECRET" {
   sensitive   = true
 }
 
+variable "JWT_SECRET_FOR_VERIFY" {
+  description = "JWT secret for verify"
+  type        = string
+  #default     = ""
+  sensitive = true
+}
+
+variable "OPENAI_API_KEY" {
+  description = "OpenAI API key"
+  type        = string
+  #default     = ""
+  sensitive = true
+}
+
+variable "SENDER_PASSWORD" {
+  description = "Sender Password"
+  type        = string
+  #default     = ""
+  sensitive = true
+}
+
+variable "ACCESS_KEY" {
+  description = "Access key"
+  type        = string
+  #default     = ""
+  sensitive = true
+}
+
+variable "SECRET_KEY" {
+  description = "Secret key"
+  type        = string
+  #default     = ""
+  sensitive = true
+}
+
+variable "SESSION_TOKEN" {
+  description = "Session token"
+  type        = string
+  #default     = ""
+  sensitive = true
+}
+
 
 

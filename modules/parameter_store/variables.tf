@@ -83,6 +83,7 @@ variable "JWT_SECRET" {
   description = "JWT secret"
   type        = string
   #default     = ""
+  sensitive = true
 }
 
 variable "JWT_SECRET_FOR_VERIFY" {
