@@ -41,7 +41,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  terraform:
+  terraform-plan:
     runs-on: ubuntu-latest
     env:
       TF_VAR_nextauth_secret: ${{ secrets.NEXTAUTH_SECRET }}
@@ -112,7 +112,7 @@ jobs:
     #     terraform apply -auto-approve
 
   terraform-apply:
-    needs: terraform
+    needs: terraform-plan
     runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' # Only runs on manual trigger
     steps:
@@ -122,7 +122,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::905418236735:role/GitHubActionsTerraform
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github-oidc-role
           aws-region: ${{ env.AWS_REGION }}
   
       - name: Restore Terraform Plan
