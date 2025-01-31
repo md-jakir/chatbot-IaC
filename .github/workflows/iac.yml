@@ -1,18 +1,21 @@
 name: Terraform Infrastructure Management
 
 on:
+  push:
+    branches: 
+      - master
   workflow_dispatch:
-    inputs: 
-      action: 
-        description: "Terraform Action (init, plan, apply, destroy)"
-        required: true
-        default: "plan"
-        type: choice
-        options:
-          - init
-          - plan
-          - apply
-          - destroy
+    # inputs: 
+    #   action: 
+    #     description: "Terraform Action (init, plan, apply, destroy)"
+    #     required: true
+    #     default: "plan"
+    #     type: choice
+    #     options:
+    #       - init
+    #       - plan
+    #       - apply
+    #       - destroy
   # push:
   #   branches:
   #     - master   # Trigger on push to main branch
@@ -66,25 +69,39 @@ jobs:
         role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/github-oidc-role
         aws-region: ${{ env.AWS_REGION }}      
 
-    - name: Initialize Terraform
-      if: inputs.action == 'init'
-      run: terraform init
+    # - name: Initialize Terraform
+    #   if: inputs.action == 'init'
+    #   run: terraform init
+
+    # - name: Terraform Plan
+    #   if: inputs.action == 'plan'
+    #   run: terraform plan
+
+    # - name: Terraform Apply
+    #   if: inputs.action == 'apply'
+    #   run: terraform apply -auto-approve
+
+    # - name: Terraform Destroy
+    #   if: inputs.action == 'destroy'
+    #   run: terraform destroy -auto-approve
+
+    - name: Terraform Init
+      run: |
+        terraform init
+
+    - name: Terraform Validate
+      run: |
+        terraform validate
 
     - name: Terraform Plan
-      if: inputs.action == 'plan'
-      run: terraform plan
+      run: |
+        terraform plan -out=tfplan
 
-    - name: Terraform Apply
-      if: inputs.action == 'apply'
-      run: terraform apply -auto-approve
-
-    - name: Terraform Destroy
-      if: inputs.action == 'destroy'
-      run: terraform destroy -auto-approve
-
-    # - name: Terraform Init
-    #   run: |
-    #     terraform init
+    - name: Save Terraform Plan
+      uses: actions/upload-artifact@v3
+      with:
+        name: terraform-plan
+        path: tfplan
 
     # - name: Terraform Plan
     #   run: |
@@ -93,3 +110,28 @@ jobs:
     # - name: Terraform Apply
     #   run: |
     #     terraform apply -auto-approve
+
+  terraform-apply:
+    needs: terraform
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' # Only runs on manual trigger
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+  
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::905418236735:role/GitHubActionsTerraform
+          aws-region: ${{ env.AWS_REGION }}
+  
+      - name: Restore Terraform Plan
+        uses: actions/download-artifact@v3
+        with:
+          name: terraform-plan
+  
+      - name: Terraform Init (Backend S3)
+        run: terraform init
+  
+      - name: Terraform Apply (Manual)
+        run: terraform apply -auto-approve tfpla
